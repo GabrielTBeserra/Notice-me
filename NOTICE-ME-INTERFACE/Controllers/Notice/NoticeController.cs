@@ -37,5 +37,12 @@ namespace NOTICE_ME_INTERFACE.Controllers.Notice
         [Produces("application/json")]
         [HttpGet("search/{search}")]
         public async Task<IActionResult> Search([FromRoute] string search) => Ok(await NoticeApplicationService.Search(search));
+
+        [SwaggerResponse(statusCode: 200, description: "Sucess", Type = typeof(IEnumerable<NoticeSearchDto>))]
+        [SwaggerResponse(statusCode: 400, description: "Internal Server Error", Type = typeof(string))]
+        [SwaggerResponse(statusCode: 409, description: "Conflict", Type = typeof(string))]
+        [Produces("application/json")]
+        [HttpGet("mynotices")]
+        public async Task<IActionResult> MyNotices() => Ok(await NoticeApplicationService.MyNotices());
     }
 }

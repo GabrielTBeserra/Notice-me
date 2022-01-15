@@ -41,7 +41,26 @@ namespace NOTICE_ME_SERVICE.ApplicationService.Notice
         {
             var noticesList = _uow.NoticeRepository.GetUntracked()
                 .Include(x => x.User)
-                .Where(x => x.SanetizedTitle.ToLower().Contains(query.ToLower()));
+                .Where(x => x.SanetizedTitle.ToLower().Contains(query.ToLower()) || 
+                            x.User.Name.ToLower().Contains(query.ToLower()));
+
+            var dtoList = await (noticesList.Select(x => new NoticeSearchDto
+            {
+                Title = x.Title,
+                PublicationDate = x.PublicationDate,
+                PublisherName = x.User.Name
+            }).ToListAsync());
+
+            return dtoList;
+        }
+
+        public async Task<IEnumerable<NoticeSearchDto>> MyNotices()
+        {
+            var user = await GetLoggedUserUntracked();
+
+            var noticesList = _uow.NoticeRepository.GetUntracked()
+                .Include(x => x.User)
+                .Where(x => x.User.Id == user.Id);
 
             var dtoList = await (noticesList.Select(x => new NoticeSearchDto
             {

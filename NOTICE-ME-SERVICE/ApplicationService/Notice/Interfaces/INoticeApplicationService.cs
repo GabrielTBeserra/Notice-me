@@ -9,5 +9,6 @@ namespace NOTICE_ME_SERVICE.ApplicationService.Notice.Interfaces
     {
         Task Post(NoticePostDto dto);
         Task<IEnumerable<NoticeSearchDto>> Search(string query);
+        Task<IEnumerable<NoticeSearchDto>> MyNotices();
     }
 }
