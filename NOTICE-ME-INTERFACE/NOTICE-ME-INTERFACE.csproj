@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>NOTICE_ME_INTERFACE</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.18" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.22">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.1.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NOTICE-ME-COMMON\NOTICE-ME-COMMON.csproj" />
+    <ProjectReference Include="..\NOTICE-ME-SERVICE\NOTICE-ME-SERVICE.csproj" />
+  </ItemGroup>
+
+
+</Project>
