@@ -13,6 +13,7 @@ namespace NOTICE_ME_SERVICE.DependencyInjection.RepositoryInjection
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<INoticeRepository, NoticeRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
         }
 
     }

@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace NOTICE_ME_INFRASTRUCTURE.Migrations
 {

@@ -19,6 +19,7 @@ namespace NOTICE_ME_SERVICE.DependencyInjection.UnitOfWorkInjection
             services.AddScoped<INoticeUnitOfWork, NoticeUnitOfWork>();
             services.AddScoped<IBaseConfigUnitOfWork, BaseConfigUnitOfWork>();
             services.AddScoped<IBaseUnitOfWork, BaseUnitOfWork>();
+            services.AddScoped<ICategoryUnitOfWork , CategoryUnitOfWork>();
         }
     }
 }

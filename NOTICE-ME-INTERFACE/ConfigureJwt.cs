@@ -33,6 +33,11 @@ namespace NOTICE_ME_INTERFACE
                     ValidateLifetime = true,
                 };
             });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("user", policy => policy.RequireClaim("Store", "user"));
+                options.AddPolicy("admin", policy => policy.RequireClaim("Store", "admin"));
+            });
         }
     }
 }

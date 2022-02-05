@@ -2,67 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NOTICE_ME_INFRASTRUCTURE.Models;
 
 namespace NOTICE_ME_INFRASTRUCTURE.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220123030328_AddStatusNotice")]
+    partial class AddStatusNotice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.22")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
-
-            modelBuilder.Entity("NOTICE_ME_DOMAIN.Entities.Notice.CategoriesEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnName("name")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.Property<string>("TAG")
-                        .IsRequired()
-                        .HasColumnName("tag")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("NOTICE_ME_DOMAIN.Entities.Notice.NoticeCategoriesEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnName("category_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NoticeId")
-                        .IsRequired()
-                        .HasColumnName("notice_id")
-                        .HasColumnType("varchar(36)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("NoticeId");
-
-                    b.ToTable("NoticeCategories");
-                });
 
             modelBuilder.Entity("NOTICE_ME_DOMAIN.Entities.Notice.NoticeEntity", b =>
                 {
@@ -136,21 +91,6 @@ namespace NOTICE_ME_INFRASTRUCTURE.Migrations
                         .IsUnique();
 
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("NOTICE_ME_DOMAIN.Entities.Notice.NoticeCategoriesEntity", b =>
-                {
-                    b.HasOne("NOTICE_ME_DOMAIN.Entities.Notice.CategoriesEntity", "Category")
-                        .WithMany("NoticeCategory")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("NOTICE_ME_DOMAIN.Entities.Notice.NoticeEntity", "Notice")
-                        .WithMany("NoticeCategories")
-                        .HasForeignKey("NoticeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("NOTICE_ME_DOMAIN.Entities.Notice.NoticeEntity", b =>

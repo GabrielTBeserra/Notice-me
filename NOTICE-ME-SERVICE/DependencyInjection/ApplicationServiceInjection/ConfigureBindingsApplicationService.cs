@@ -22,6 +22,7 @@ namespace NOTICE_ME_SERVICE.DependencyInjection.ApplicationServiceInjection
 
             #region NOTICE
             services.AddScoped<INoticeApplicationService, NoticeApplicationService>();
+            services.AddScoped<ICategoryApplicationService, CategoryApplicationService>();
             #endregion
         }
     }

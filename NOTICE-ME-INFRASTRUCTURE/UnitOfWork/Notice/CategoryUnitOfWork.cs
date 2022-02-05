@@ -6,14 +6,14 @@ using NOTICE_ME_INFRASTRUCTURE.UnitOfWork.Notice.Interfaces;
 
 namespace NOTICE_ME_INFRASTRUCTURE.UnitOfWork.Notice
 {
-    public class NoticeUnitOfWork : BaseConfigUnitOfWork, INoticeUnitOfWork
+    public class CategoryUnitOfWork : BaseConfigUnitOfWork, ICategoryUnitOfWork
     {
-        public NoticeUnitOfWork(ApplicationDbContext applicationDbContext, INoticeRepository noticeRepository) : base(applicationDbContext)
+        public CategoryUnitOfWork(ApplicationDbContext applicationDbContext, ICategoryRepository categoryRepository) : base(applicationDbContext)
         {
-            NoticeRepository = noticeRepository;
+            CategoryRepository = categoryRepository;
         }
 
-        public INoticeRepository NoticeRepository { get; }
+        public ICategoryRepository CategoryRepository { get; }
         public IUserRepository UserRepository { get; }
     }
 }

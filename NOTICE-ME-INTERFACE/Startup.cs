@@ -38,7 +38,7 @@ namespace NOTICE_ME_INTERFACE
             // Configuração Swagger
             ConfigureSwagger.Configure(services);
 
-            ServiceProvider intermediateProvider = services.BuildServiceProvider();
+            var intermediateProvider = services.BuildServiceProvider();
             var acessorContext = intermediateProvider.GetService<IHttpContextAccessor>();
             HttpContextGetter.Configure(acessorContext);
 
@@ -50,14 +50,13 @@ namespace NOTICE_ME_INTERFACE
                     builder =>
                     {
                         builder
-
                             .AllowAnyHeader()
                             .AllowAnyMethod()
                             .AllowAnyOrigin();
-
                     });
             });
         }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext dataContext)
         {
             // Run migrations on startup
@@ -82,10 +81,7 @@ namespace NOTICE_ME_INTERFACE
 
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
     }
 }

@@ -15,6 +15,7 @@ namespace NOTICE_ME_INFRASTRUCTURE.Models.Mappers.Notice
 
             builder.Property(x => x.PublicationDate)
                     .HasColumnType("DATETIME");
+
         }
     }
 }

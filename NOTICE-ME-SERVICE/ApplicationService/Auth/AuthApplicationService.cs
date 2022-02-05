@@ -1,11 +1,12 @@
 ﻿using NOTICE_ME_COMMON.Exceptions;
 using NOTICE_ME_COMMON.Helpers.ConvertContext;
-using NOTICE_ME_CROSSCUTING.DTO.Auth;
+using NOTICE_ME_CROSSCUTING.DTO.User;
 using NOTICE_ME_DOMAIN.Entities.User;
 using NOTICE_ME_INFRASTRUCTURE.UnitOfWork.User.Interfaces;
 using NOTICE_ME_SERVICE.ApplicationService.Auth.Interfaces;
 using NOTICE_ME_SERVICE.ApplicationService.Config.Interfaces;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NOTICE_ME_SERVICE.ApplicationService.Auth
@@ -21,8 +22,10 @@ namespace NOTICE_ME_SERVICE.ApplicationService.Auth
             this.tokenApplicationService = tokenApplicationService;
         }
 
-        public async Task<LoginResponseDto> Login(LoginDto dto)
+        public async Task<LoginResponseDto> Login(LoginDto dto, CancellationToken ctToken = default)
         {
+            ctToken.ThrowIfCancellationRequested();
+
             var password = dto.Password.ToSha256();
             var user = _uow.UserRepository.GetUntracked()
                         .Where(user => user.Email == dto.Email && user.Password == password)
@@ -42,8 +45,10 @@ namespace NOTICE_ME_SERVICE.ApplicationService.Auth
             return userLogged;
         }
 
-        public async Task Register(RegisterDto dto)
+        public async Task Register(RegisterDto dto, CancellationToken ctToken = default)
         {
+            ctToken.ThrowIfCancellationRequested();
+
             var user = _uow.UserRepository.GetUntracked()
                         .Where(user => user.Email == dto.Email)
                         .FirstOrDefault();

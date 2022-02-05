@@ -17,5 +17,7 @@ namespace NOTICE_ME_INFRASTRUCTURE.Models
 
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<NoticeEntity> Notices { get; set; }
+        public DbSet<NoticeCategoriesEntity> NoticeCategoriesEntities { get; set; }
+        public DbSet<CategoriesEntity> Categories { get; set; }
     }
 }

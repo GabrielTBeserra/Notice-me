@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NOTICE_ME_CROSSCUTING.DTO.Auth;
+using NOTICE_ME_CROSSCUTING.DTO.User;
 using NOTICE_ME_SERVICE.ApplicationService.Auth.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NOTICE_ME_INTERFACE.Controllers.Auth
@@ -11,11 +12,11 @@ namespace NOTICE_ME_INTERFACE.Controllers.Auth
     [Route("api/v1/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthApplicationService applicationService;
+        private readonly IAuthApplicationService _authApplicationService;
 
-        public AuthController(IAuthApplicationService applicationService)
+        public AuthController(IAuthApplicationService authApplicationService)
         {
-            this.applicationService = applicationService;
+            this._authApplicationService = authApplicationService;
         }
 
         [SwaggerResponse(statusCode: 200, description: "Login Success", Type = typeof(LoginResponseDto))]
@@ -24,7 +25,7 @@ namespace NOTICE_ME_INTERFACE.Controllers.Auth
         [Produces("application/json")]
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Login([FromBody] LoginDto dto) => Ok(await applicationService.Login(dto));
+        public async Task<IActionResult> Login([FromBody] LoginDto dto, CancellationToken ctToken) => Ok(await _authApplicationService.Login(dto, ctToken));
 
 
         [SwaggerResponse(statusCode: 200, description: "Register Success")]
@@ -33,9 +34,9 @@ namespace NOTICE_ME_INTERFACE.Controllers.Auth
         [Produces("application/json")]
         [HttpPost("register")]
         [AllowAnonymous]
-        public async Task<IActionResult> Register([FromBody] RegisterDto dto)
+        public async Task<IActionResult> Register([FromBody] RegisterDto dto, CancellationToken ctToken)
         {
-            await applicationService.Register(dto);
+            await _authApplicationService.Register(dto, ctToken);
             return Ok();
         }
 

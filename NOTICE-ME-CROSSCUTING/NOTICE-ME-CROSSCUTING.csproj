@@ -5,4 +5,8 @@
     <RootNamespace>NOTICE_ME_CROSSCUTING</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NOTICE-ME-DOMAIN\NOTICE-ME-DOMAIN.csproj" />
+  </ItemGroup>
+
 </Project>

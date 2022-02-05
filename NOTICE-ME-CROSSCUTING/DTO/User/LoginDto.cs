@@ -1,4 +1,4 @@
-﻿namespace NOTICE_ME_CROSSCUTING.DTO.Auth
+﻿namespace NOTICE_ME_CROSSCUTING.DTO.User
 {
     public class LoginDto
     {
